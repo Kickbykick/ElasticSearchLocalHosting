@@ -1,0 +1,55 @@
+PUT /superhero
+
+POST /superhero/_doc
+{
+  "name" : "Superman",
+  "appearance-date" : 1938,
+  "powers" : ["lasers", "flight", "super strength"]
+}
+
+POST /superhero/_doc/supergirl1
+{
+  "name" : "Supergirl",
+  "appearance-date" : 1958,
+  "powers" : ["lasers", "flight", "super strength"]
+}
+
+POST /superhero/_doc/123
+{
+  "name" : "Batman",
+  "appearance-date" : 1939,
+  "powers" : ["money", "martial arts", "alfred"]
+}
+
+POST /superhero/_doc/456
+{
+  "name" : "Wonderwoman",
+  "appearance-date" : 1941,
+  "powers" : ["lasso", "speed", "super strength"]
+}
+
+
+GET /superhero/_search
+
+GET /superhero/_search
+{
+  "query": {
+    "match" : {
+        "name" : "Wonderwoman"
+    }
+  }
+}
+
+GET /superhero/_search
+{
+  "sort" : [
+        { "appearance-date" : "asc" },
+        "_score"
+    ]
+}
+
+HEAD /superhero
+
+DELETE /superhero/_doc/YdOKfnQBvNUv8GUodez_
+
+GET /superhero/_search
