@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,32 +33,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  // Set up
-  // final Database elasticSearchVar = ElasticSearch(
-  //   host: "a5b6196df6064f3c8bd19a055d3c365c.us-central1.gcp.cloud.es.io",
-  //   port: 9243,
-  //   credentials: ElasticSearchPasswordCredentials(
-  //       user: 'elastic', password: 'CCoBFkK5GdkdrLwoZk8K5Hxe'),
-  // ).database();
-
-
-
-
-
-
-
   Future<void> mainSearchFunc() async {
-  
+    
+    // final transport = ConsoleHttpTransport(Uri.parse('http://10.0.0.16:9200/'));
+    // final client = elastic.Client(transport);
+
     var response = await http.get('http://10.0.0.16:9200/');
     print('Response body: ${response.body}');
 
+    // await transport.close();
   }
-
-
-
-
-
-
 
   Future addGamesToList() async {
     final transport = ConsoleHttpTransport(Uri.parse('http://10.0.0.16:9200/'));
