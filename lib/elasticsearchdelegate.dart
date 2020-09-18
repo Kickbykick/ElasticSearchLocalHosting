@@ -63,16 +63,6 @@ class ElasticSearchDelegate extends SearchDelegate {
     );
   }
 
-  // Widget _displayGames( List<SuperHero> superHeroList) {
-
-  //   return ListView.builder(
-  //     itemCount: superHeroList.length,
-  //     itemBuilder: (BuildContext ctxt, int index) {
-  //       return DisplaySearchResult(name: superHeroList[index].name, appearanceDate: superHeroList[index].appearanceDate, powers: superHeroList[index].powers,);
-  //     }
-  //   );
-  // }
-
   Future searchElasticServer(searchQuery) async {
     final transport = ConsoleHttpTransport(Uri.parse('http://10.0.0.16:9200/'));
     final client = elastic.Client(transport);
@@ -81,16 +71,12 @@ class ElasticSearchDelegate extends SearchDelegate {
     final searchResult = await client.search(
         'superhero', '_doc', elastic.Query.term('name', ['$searchQuery']),
         source: true);
-    // print(searchResult.toMap());
 
     print("----------- Found ${searchResult.totalCount} $searchQuery ----------");
     for(final iter in searchResult.hits){
       Map<dynamic, dynamic> currDoc = iter.doc;
       print(currDoc);
       superHeroList.add(SuperHero(name: currDoc['name'].toString(), appearanceDate: currDoc['appearance-date'].toString(), powers: currDoc['powers'].toString(),));
-
-      // searchResultList.add(DisplaySearchResult(name: currDoc['some'].toString(), appearanceDate: currDoc['name'].toString(), powers: currDoc['some'].toString(),));
-      // print("Next item - ${iter.doc}");
     }
 
     await transport.close();
