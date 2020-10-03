@@ -1,6 +1,6 @@
 # Elasticengine
 
-Show case of elastic search in a flutter app
+Show case of Elastic Search Local Hosting in a flutter app
 
 ## Videos
 
